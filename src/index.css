@@ -24,7 +24,7 @@ code {
 }
 
 .custom-header-menu .ant-menu-item-selected {
-  background-color: #00aaff !important; /* Header's background color */
+  background-color: #c90000 !important; /* Header's background color */
 }
 
 .custom-header-menu .ant-menu-item-selected a {

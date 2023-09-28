@@ -4,8 +4,11 @@ import { sortData, filterDataByType } from '../utils/helpers';
 import Filter from './Filter';
 import { List, Card } from 'antd';
 import { Link } from 'react-router-dom';
+import { Select } from 'antd';
 
 function PokemonList() {
+
+  const { Option } = Select;
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16; // Cantidad de Pokémon a mostrar por página
@@ -17,7 +20,8 @@ function PokemonList() {
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('id');
   const [selectedTypes, setSelectedTypes] = useState([]);
-  
+
+  const totalPages = Math.ceil((pokemonData?.count || 0) / itemsPerPage);
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -44,6 +48,10 @@ function PokemonList() {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  const handleChangePage = (newPage) => {
+    setCurrentPage(newPage);
+  };  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -79,11 +87,22 @@ function PokemonList() {
           >
             Previous
           </button>
+          <Select
+            style={{ margin: '0 10px' }}
+            value={currentPage}
+            onChange={handleChangePage}
+          >
+            {Array.from({ length: totalPages }, (_, index) => (
+              <Option key={index + 1} value={index + 1}>
+                Page {index + 1}
+              </Option>
+            ))}
+          </Select>
           <button
             onClick={handleNextPage}
             className="pagination-button"
             disabled={
-              !pokemonData || currentPage >= Math.ceil(pokemonData.count / itemsPerPage)
+              !pokemonData || currentPage >= totalPages
             }
           >
             Next

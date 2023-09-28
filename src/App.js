@@ -49,17 +49,16 @@ function App() {
         <Header style={{ background: '#000', padding: 0}}>
           <div style={{ display: 'flex', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
             <Title style={{ color: '#fff', margin: 0 }} level={2}><Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>PokéApp</Link></Title>
-            <Menu 
+            <Menu
               className="custom-header-menu"
-              theme="dark" 
-              mode="horizontal" 
+              theme="dark"
+              mode="horizontal"
               defaultSelectedKeys={['1']}
               style={{ background: 'transparent', color: '#fff' }}
-              >
-              <Menu.Item key="1" style={{ color: '#fff' }}>
-                <Link to="/">Home</Link>
-              </Menu.Item>
-            </Menu>
+              items={[
+                { key: '1', label: <Link to="/">Home</Link> },
+              ]}
+            />
             {showResetButton && ( // Mostrar el botón de reinicio si showResetButton es true
             <button className="reset-button" onClick={showConfirmModal}>
               Reset PokeApp
@@ -67,7 +66,7 @@ function App() {
             )}
             <Modal
               title="Confirmación"
-              visible={isConfirmModalVisible}
+              open={isConfirmModalVisible}
               onOk={handleConfirmReset}
               onCancel={handleCancelReset}
               okText="Sí"
@@ -80,7 +79,7 @@ function App() {
         </Header>
         <Content style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
           <Switch>
-            <Route exact path="/" component={PokemonList} />
+            <Route exact path="/" component={PokemonList}/>
             <Route path="/pokemon/:id" render={(props) => (
               <PokemonDetail {...props} onShowResetButton={handleShowResetButton} onHideResetButton={handleHideResetButton}  />
             )} />

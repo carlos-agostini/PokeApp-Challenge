@@ -53,3 +53,14 @@
 .pokedex ul li {
   margin-bottom: 5px;
 }
+
+export function sortData(data, sort) {
+  if (sort === "ascendente") {
+    return [...data].sort((a, b) => a.localeCompare(b));
+  } else if (sort === "descendente") {
+    return [...data].sort((a, b) => b.localeCompare(a));
+  } else {
+    // En caso de que el valor de 'sort' no sea válido, devuelve los datos sin cambios
+    return data;
+  }
+}
