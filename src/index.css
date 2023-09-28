@@ -1,0 +1,32 @@
+/* Hide scrollbar Chrome, Safari and Opera */
+* {
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar IE and Edge */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Poppins";
+}
+
+.tutorial-mask {
+  color: #0000004f;
+}
+
+.custom-header-menu .ant-menu-item-selected {
+  background-color: #00aaff !important; /* Header's background color */
+}
+
+.custom-header-menu .ant-menu-item-selected a {
+  color: #fff !important; /* Text color */
+}

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": "src",
+    "paths": {
+      "component/*": ["./src/component"],
+      "hooks/*": ["./src/hooks"],
+      "layout/*": ["./src/layout"],
+      "providers/*": ["./src/providers"],
+      "utils/*": ["./src/utils"]
+    }
+  }
+}

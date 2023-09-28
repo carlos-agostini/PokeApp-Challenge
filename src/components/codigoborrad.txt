@@ -1,0 +1,55 @@
+      const [isPokedexVisible, setPokedexVisible] = useState(false);
+    
+     const togglePokedex = () => {
+    setPokedexVisible(!isPokedexVisible);
+  };
+
+
+   
+    <span className="pokedex-icon" onClick={togglePokedex}>
+      <img src="assets/pokedex.png" alt="Pokédex" /> {/* Ajusta la ruta de la imagen */}
+    </span>
+    {/* Pokédex dentro del encabezado */}
+    <div className="pokedex">
+      <h2>Unlocked Pokemons</h2>
+      <ul>
+        {Object.keys(localStorage).map((key) => {
+          if (key.startsWith('pokemon.')) {
+            const pokemonName = key.replace('pokemon.', '');
+            return <li key={key}>{pokemonName}</li>;
+          }
+          return null;
+        })}
+      </ul>
+    </div>
+
+
+    /* Estilos del ícono de la Pokédex */
+.pokedex-icon {
+  cursor: pointer;
+  margin-left: 10px; /* Espacio entre el botón de reinicio y el ícono */
+}
+
+
+/* Estilos de la Pokédex (ventana emergente) */
+.pokedex {
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ccc;
+  position: absolute;
+  right: 10px; /* Ajusta la posición derecha según tus necesidades */
+  top: 50px; /* Ajusta la posición superior según tus necesidades */
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: none; /* Oculta inicialmente la Pokédex */
+}
+
+/* Estilos para la lista de Pokémon en la Pokédex */
+.pokedex ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pokedex ul li {
+  margin-bottom: 5px;
+}
