@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useApi from '../utils/useApi';
-import { sortData, filterDataByType, filterData } from '../utils/helpers';
+import { sortData, filterData } from '../utils/helpers';
 import Filter from './Filter';
 import { List, Card } from 'antd';
 import { Link } from 'react-router-dom';
@@ -9,18 +9,17 @@ import { Select } from 'antd';
 function PokemonList() {
 
   const { Option } = Select;
-  
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 16; // Cantidad de Pokémon a mostrar por página
-
-  const [filteredPokemon, setFilteredPokemon] = useState([]);
 
   const { data: pokemonData, loading, error } = useApi(`/pokemon?offset=0&limit=1000`);
 
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+  
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('id');
   const [selectedTypes, setSelectedTypes] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 16; // Cantidad de Pokémon a mostrar por página
   const totalPages = Math.ceil((pokemonData?.count || 0) / itemsPerPage);
 
   const handleFilterChange = (newFilter) => {
@@ -60,6 +59,7 @@ function PokemonList() {
     setFilteredPokemon(filterData(allData, filter, selectedTypes));
   }, [pokemonData?.results, filter, selectedTypes]);
 
+
   const paginatedPokemon = filteredPokemon.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -72,8 +72,6 @@ function PokemonList() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-
 
   const sortedPokemon = sortData(paginatedPokemon, sort);
 
