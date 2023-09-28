@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useApi from '../utils/useApi';
-import { sortData, filterDataByType } from '../utils/helpers';
+import { sortData, filterDataByType, filterData } from '../utils/helpers';
 import Filter from './Filter';
 import { List, Card } from 'antd';
 import { Link } from 'react-router-dom';
@@ -13,9 +13,9 @@ function PokemonList() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16; // Cantidad de Pokémon a mostrar por página
 
-  const offset = (currentPage - 1) * itemsPerPage;
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
 
-  const { data: pokemonData, loading, error } = useApi(`/pokemon?offset=${offset}&limit=${itemsPerPage}`);
+  const { data: pokemonData, loading, error } = useApi(`/pokemon?offset=0&limit=1000`);
 
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('id');
@@ -43,7 +43,7 @@ function PokemonList() {
   
   const handleNextPage = () => {
     // Verifica si hay más Pokémon para mostrar
-    const totalPokemonCount = pokemonData?.count || 0;
+    const totalPokemonCount = filteredPokemon.length;
     if (currentPage < Math.ceil(totalPokemonCount / itemsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
@@ -53,6 +53,18 @@ function PokemonList() {
     setCurrentPage(newPage);
   };  
 
+
+  useEffect(() => {
+    // Filtra los Pokémon en base a los filtros actuales
+    const allData = pokemonData?.results || [];
+    setFilteredPokemon(filterData(allData, filter, selectedTypes));
+  }, [pokemonData?.results, filter, selectedTypes]);
+
+  const paginatedPokemon = filteredPokemon.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -61,10 +73,9 @@ function PokemonList() {
     return <div>Error: {error.message}</div>;
   }
 
-  const { results: allData } = pokemonData;
 
-  const filteredPokemon = filterDataByType(allData, filter, selectedTypes).slice(0, 16);
-  const sortedPokemon = sortData(filteredPokemon, sort);
+
+  const sortedPokemon = sortData(paginatedPokemon, sort);
 
   return (
     <div>
