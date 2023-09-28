@@ -1,6 +1,6 @@
 {
   "homepage": "http://carlos-agostini.github.io/PokeApp-Challenge",
-  "name": "pokemon_coding_challenge",
+  "name": "pokemon_coding_challenge", 
   "version": "0.1.0",
   "private": true,
   "dependencies": {
