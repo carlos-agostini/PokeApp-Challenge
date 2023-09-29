@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/PokeApp-Challenge/static/css/main.c1d4bd34.css",
-    "main.js": "/PokeApp-Challenge/static/js/main.93c2f2d8.js",
+    "main.css": "/PokeApp-Challenge/static/css/main.b3bf0557.css",
+    "main.js": "/PokeApp-Challenge/static/js/main.3424ddb0.js",
     "static/js/787.3e4b36fc.chunk.js": "/PokeApp-Challenge/static/js/787.3e4b36fc.chunk.js",
+    "static/media/Pokemon Hollow.ttf": "/PokeApp-Challenge/static/media/Pokemon Hollow.47f77ce9939c5330492b.ttf",
     "index.html": "/PokeApp-Challenge/index.html",
-    "main.c1d4bd34.css.map": "/PokeApp-Challenge/static/css/main.c1d4bd34.css.map",
-    "main.93c2f2d8.js.map": "/PokeApp-Challenge/static/js/main.93c2f2d8.js.map",
+    "main.b3bf0557.css.map": "/PokeApp-Challenge/static/css/main.b3bf0557.css.map",
+    "main.3424ddb0.js.map": "/PokeApp-Challenge/static/js/main.3424ddb0.js.map",
     "787.3e4b36fc.chunk.js.map": "/PokeApp-Challenge/static/js/787.3e4b36fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1d4bd34.css",
-    "static/js/main.93c2f2d8.js"
+    "static/css/main.b3bf0557.css",
+    "static/js/main.3424ddb0.js"
   ]
 }
